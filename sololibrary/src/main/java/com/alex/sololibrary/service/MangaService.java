@@ -32,5 +32,7 @@ public class MangaService {
         return mangaRepository.findByTitleContaining(title);
     }
 
+    public void delete(MangaModel mangaModel) { mangaRepository.delete(mangaModel);}
+
 
 }

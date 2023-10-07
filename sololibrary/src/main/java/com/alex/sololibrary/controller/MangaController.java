@@ -50,8 +50,17 @@ public class MangaController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<MangaModel>> getAllParkingSpots(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
+    public ResponseEntity<Page<MangaModel>> getAllManga(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(mangaService.findAll(pageable));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteManga(@PathVariable(value = "id") UUID id){
+        Optional<MangaModel> mangaModelOptional = mangaService.findById(id);
+        if (mangaModelOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Manga não encontrado.");
+        }
+        mangaService.delete(mangaModelOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body("");
+    }
 }
