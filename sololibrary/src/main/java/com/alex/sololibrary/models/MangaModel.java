@@ -18,14 +18,15 @@ public class MangaModel implements Serializable {
     private String title;
     @Column(nullable = false)
     private int numCap;
-    private String nomeImg;
+    @Column(nullable = false)
+    private String urlImg;
 
-    public String getNomeImg() {
-        return nomeImg;
+    public String getUrlImg() {
+        return urlImg;
     }
 
-    public void setNomeImg(String nomeImg) {
-        this.nomeImg = nomeImg;
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
     }
 
     public UUID getId() {

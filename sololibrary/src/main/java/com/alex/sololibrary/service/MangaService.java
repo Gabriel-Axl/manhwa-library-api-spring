@@ -15,7 +15,7 @@ public class MangaService {
 
     @Autowired
     public MangaRepository mangaRepository;
-    public static String pathImagem = "C://Users//alexg//Documents//GitHub//images//";
+
     public MangaModel save(MangaModel mangaModel){
         return mangaRepository.save(mangaModel);
     }

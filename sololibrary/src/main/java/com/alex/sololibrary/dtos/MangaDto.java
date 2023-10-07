@@ -10,6 +10,16 @@ public class MangaDto {
     private String title;
     @NotNull
     private int numCap;
+    @NotNull
+    private String urlImg;
+
+    public String getUrlImg() {
+        return urlImg;
+    }
+
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
+    }
 
     public String getTitle() {
         return title;
