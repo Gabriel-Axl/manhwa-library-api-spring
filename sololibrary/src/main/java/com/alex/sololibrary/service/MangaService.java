@@ -35,4 +35,6 @@ public class MangaService {
     public void delete(MangaModel mangaModel) { mangaRepository.delete(mangaModel);}
 
 
+
+
 }

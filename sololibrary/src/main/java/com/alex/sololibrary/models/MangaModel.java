@@ -20,6 +20,16 @@ public class MangaModel implements Serializable {
     private int numCap;
     @Column(nullable = false)
     private String urlImg;
+    @Column(nullable = false, length = 1000)
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getUrlImg() {
         return urlImg;
