@@ -23,6 +23,10 @@ public class MangaModel implements Serializable {
     @Column(nullable = false, length = 1000)
     private String description;
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getDescription() {
         return description;
     }

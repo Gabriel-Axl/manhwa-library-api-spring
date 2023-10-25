@@ -49,6 +49,23 @@ public class MangaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(mangaService.save(mangaModel));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateManga( @PathVariable(value = "id") UUID id, @RequestBody @Valid MangaDto mangaDTO) throws ParseException {
+        Optional<MangaModel> optionalMangaModel = mangaService.findById(id);
+        if (optionalMangaModel.isEmpty()){
+           return ResponseEntity.status(HttpStatus.NOT_FOUND).body("manga não encontrado");
+        }
+        var mangaModel = new MangaModel();
+        BeanUtils.copyProperties(mangaDTO,mangaModel);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        var dataFormatada = new Date();
+        String dataString = sdf.format(dataFormatada);
+        Date data = sdf.parse(dataString);
+        mangaModel.setCapDate(data);
+        mangaModel.setId(id);
+        return ResponseEntity.status(HttpStatus.CREATED).body(mangaService.save(mangaModel));
+    }
+
     @GetMapping
     public ResponseEntity<Page<MangaModel>> getAllManga(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(mangaService.findAll(pageable));
