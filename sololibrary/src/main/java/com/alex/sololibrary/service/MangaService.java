@@ -34,7 +34,15 @@ public class MangaService {
 
     public void delete(MangaModel mangaModel) { mangaRepository.delete(mangaModel);}
 
-
-
+    public int getNumberPages(){
+        int pages;
+        float tuplesNumber = mangaRepository.countTotalRecords();
+        if( tuplesNumber <= 9){
+            pages = 1;
+        }else{
+            pages = (int) Math.ceil(tuplesNumber / 9);
+        }
+        return pages ;
+    }
 
 }

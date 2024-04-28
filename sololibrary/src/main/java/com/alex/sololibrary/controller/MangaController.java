@@ -71,6 +71,7 @@ public class MangaController {
         return ResponseEntity.status(HttpStatus.OK).body(mangaService.findAll(pageable));
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable(value = "id") UUID id){
         Optional<MangaModel> mangaModelOptional = mangaService.findById(id);
@@ -78,6 +79,12 @@ public class MangaController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Manga não encontrado.");
         }
         return ResponseEntity.status(HttpStatus.OK).body(mangaModelOptional.get());
+    }
+
+    @GetMapping("/pages")
+    public ResponseEntity<Integer> getPages(){
+        int numberPages = mangaService.getNumberPages();
+        return ResponseEntity.status(HttpStatus.OK).body(numberPages);
     }
 
     @GetMapping("detail/{title}")
